@@ -22,3 +22,4 @@ Part B
     B.3 - Write a simple script in python (or other scripting language) that accesses the /proc filesystem on the web server machine and prints out the same information that the C program did in Part A.5.
         TODO
     B.4 - Show that you can access the script in Part B.2. from a browser on the VM, or from another computer (real or virtual).
+        TODO
