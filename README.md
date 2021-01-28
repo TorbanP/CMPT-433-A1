@@ -126,7 +126,7 @@ Part A
             Log in for first time & update
             $ sudo apt update
             $ sudo apt upgrade
-            
+
             Enable SSH
             $ sudo ufw allow ssh
             Workstation Complete
@@ -139,11 +139,6 @@ Part A
         Install dependencies for compiling
         $ sudo apt-get install -y build-essential libncurses5-dev gcc libssl-dev grub2 bc bison flex libelf-dev
 
-
-
-
-
-
     A.4 - Write a C module that can be inserted as a kernel module that prints "Hello, world" when the module is initialized and installed, and "Goodbye, world" when the module is removed.
         TODO
     A.5 - Write a C program that reads the /proc filesystem to get status information about the machine. Justify what information you are obtaining and why.
@@ -152,7 +147,21 @@ Part A
         $sudo apt install gcc
 
         Write hello world to confirm everythings working
+        $ torban@ubuntu-server:~$ ./helloworld
+        $ hello World!
+        Success! Code pushed to GIT
 
+        Find some example code to run proc stuffs
+        a good start https://stackoverflow.com/questions/56114598/read-proc-cpuinfo-and-print-matching-line-in-c
+
+        Created code (procstats.c) that shows the following useful information
+            CPU
+            CPU Clock
+            CPU Cores
+            Total Memory
+            Free memory
+            Linux version incl. kernel
+            Would like HDD space readout but short on time
 
 Part B
     B.1 - Obtain a version of the Apache web server and ensure that PHP capabilities are provided in your system.
