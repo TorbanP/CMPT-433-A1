@@ -88,6 +88,9 @@ Part A
             $ sudo apt update
             $ sudo apt upgrade
 
+            Enable SSH
+            $ sudo ufw allow ssh
+
             Server Complete
 
             Setup Base Config for Workstation ( Identical to server except 4gb ram & called Ubuntu_workstation)
@@ -123,19 +126,53 @@ Part A
             Log in for first time & update
             $ sudo apt update
             $ sudo apt upgrade
-
+            
+            Enable SSH
+            $ sudo ufw allow ssh
             Workstation Complete
 
     A.3 - Configure a kernel for each of your hardware configurations.
-        TODO
+        The joy of selecting ubuntu is the wealth of resources on the internet to tweak it
+        using https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel as a reference
+        using https://linuxguides.co.uk/ubuntu-guides/how-to-compile-kernel-ubuntu-20-04/ as a better reference
+
+        Install dependencies for compiling
+        $ sudo apt-get install -y build-essential libncurses5-dev gcc libssl-dev grub2 bc bison flex libelf-dev
+
+
+
+
+
+
     A.4 - Write a C module that can be inserted as a kernel module that prints "Hello, world" when the module is initialized and installed, and "Goodbye, world" when the module is removed.
         TODO
     A.5 - Write a C program that reads the /proc filesystem to get status information about the machine. Justify what information you are obtaining and why.
-        TODO
+        
+        First install gcc compiler
+        $sudo apt install gcc
+
+        Write hello world to confirm everythings working
+
 
 Part B
     B.1 - Obtain a version of the Apache web server and ensure that PHP capabilities are provided in your system.
-        TODO
+        
+        Install Apache
+        $ sudo apt install apache2
+        Configure Firewall
+        $ sudo ufw allow "Apache Full"
+        $ sudo ufw enable
+        Check to see if server is running by accessing webpage
+        Working on port 80, not https though
+
+        Install PHP
+        using guide https://linuxize.com/post/how-to-install-php-on-ubuntu-20-04/
+        $ sudo apt install php libapache2-mod-php # install apache2 php plugin
+        $ sudo systemctl restart apache2 # restart
+
+        Verify it works by creating example php page taht displays phpinfo();
+        Successfully running PHP Version 7.4.3
+
     B.2 - Write a simple script in PHP that accesses the /proc filesystem on the web server machine and prints out the same information that the C program did in Part A.5. This must be able to be run under Apache
         TODO
     B.3 - Write a simple script in python (or other scripting language) that accesses the /proc filesystem on the web server machine and prints out the same information that the C program did in Part A.5.
