@@ -139,6 +139,45 @@ Part A
         Install dependencies for compiling
         $ sudo apt-get install -y build-essential libncurses5-dev gcc libssl-dev grub2 bc bison flex libelf-dev
 
+        Install the latest kernel 5.9.9 for maximum fun
+        $ wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.9.tar.xz
+        $ tar -xvf linux-5.9.9.tar.xz
+        $ ls -l /boot
+
+        move current kernel config file to working directory
+        $ cp /boot/config-5.4.0-65-generic /home/torban/linux-5.9.9/.config
+
+        $ make menuconfig
+        I looked through a lot of the kernel options but couldnt really see anything worth tweaking at the risk of breaking things
+        Loaded the .config file into menuconfig
+        $ make -j12 deb-pkg # 12 cores of goodness
+        Press enter blindly about 500 times
+            apparently i didnt save the config file properly which is why it asked so many questions
+        Heat the room for a while compiling while starting workststion kernel build
+
+
+
+
+
+
+
+
+        Workstation Kernel, Same process mostly
+        Workstation uses a new kernel due to an update so adapt code slightly
+
+        move current kernel config file to working directory
+        $ cp /boot/config-5.8.0-40-generic /home/torban/linux-5.9.9/.config
+
+        $ make menuconfig
+        Loaded the .config file into menuconfig
+        $ make -j12 deb-pkg # 12 cores of goodness
+        Press enter blindly about 500 times
+        go to bed
+
+
+
+
+
     A.4 - Write a C module that can be inserted as a kernel module that prints "Hello, world" when the module is initialized and installed, and "Goodbye, world" when the module is removed.
         TODO
     A.5 - Write a C program that reads the /proc filesystem to get status information about the machine. Justify what information you are obtaining and why.
