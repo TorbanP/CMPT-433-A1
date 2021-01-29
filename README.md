@@ -33,6 +33,12 @@ Part A
             16GB DDR3 Ram
             500GB SATA ssd + 2x8TB + 2x3TB + 1x1.5TB Mechaincal drives (future offsite backup for Synology NAS)
 
+        Later switched to main workstation due to slow compile times and the problems it created
+            TP-GAMER
+            12 core AMD Ryzen 3900x
+            32GB DDR4
+            2x2TB SSD
+
         Setting up Virtualbox: (package manager version was old so dl from oracle, removed old, and got latest version)
             crudely follow for ideas (was out of date) https://www.cloudsavvyit.com/3118/how-to-create-virtualbox-vms-from-the-linux-terminal/
             $ wget https://download.virtualbox.org/virtualbox/6.1.18/virtualbox-6.1_6.1.18-142142~Ubuntu~eoan_amd64.deb
@@ -48,9 +54,9 @@ Part A
                 accept eula
             
             Setup Base Config for Server
-            $ sudo VBoxManage createvm --name "Ubuntu Server" --ostype Ubuntu_64 --register # set up server VM
+            $ sudo VBoxManage createvm --name "Ubuntu_server" --ostype Ubuntu_64 --register # set up server VM
             $ sudo VBoxManage modifyvm "Ubuntu_server" --memory 8192 # 8 GB ram (edited: increased to 8GB for compiling kernel and not hating life)
-            $ sudo VBoxManage createhd --filename "Ubuntu_server.vdi" --size 32000 # 32GB HDD on SSD
+            $ sudo VBoxManage createhd --filename "Ubuntu_server.vdi" --size 40000 # 40GB HDD on SSD (edited: 20gb was not enough to compile kernel)
             $ sudo VBoxManage modifyvm "Ubuntu_server" --cpus 6 # 6 CPU threads
 
             Setup HDD
@@ -96,8 +102,8 @@ Part A
             Setup Base Config for Workstation ( Identical to server except 4gb ram & called Ubuntu_workstation)
             $ sudo VBoxManage createvm --name "Ubuntu_workstation" --ostype Ubuntu_64 --register # set up server VM
             $ sudo VBoxManage modifyvm "Ubuntu_workstation" --memory 8192 # 8 GB ram (edited: increased to 8GB for compiling kernel and not hating life)
-            $ sudo VBoxManage createhd --filename "Ubuntu_workstation.vdi" --size 32000 # 32GB HDD on SSD
-            $ sudo VBoxManage modifyvm "Ubuntu_workstation" --cpus 6 # 6 CPU threads
+            $ sudo VBoxManage createhd --filename "Ubuntu_workstation.vdi" --size 80000 # 80GB HDD on SSD (Edited 40GB not enough Edited: 20gb was not enough to compile kernel)
+            $ sudo VBoxManage modifyvm "Ubuntu_workstation" --cpus 12 # 12 CPU threads
 
             Setup HDD
             $ sudo VBoxManage storagectl "Ubuntu_workstation" --name "SAS Controller" --add sas --controller LSILogicSAS
@@ -155,13 +161,6 @@ Part A
             apparently i didnt save the config file properly which is why it asked so many questions
         Heat the room for a while compiling while starting workststion kernel build
 
-
-
-
-
-
-
-
         Workstation Kernel, Same process mostly
         Workstation uses a new kernel due to an update so adapt code slightly
 
@@ -174,9 +173,24 @@ Part A
         Press enter blindly about 500 times
         go to bed
 
+        Wake up, see both kernels have failed to compile, need more HDD space apparently
 
+        Resize vm's in vbox to 40GB for both
 
+        Change partition table in vms using terminal
+        used a portion of this guide https://brianchristner.io/how-to-resize-ubuntu-root-partition/
+        $ sudo cdfisk
+        select sda3 and resize, write, quit, reboot
+        Do it over again after filling up 40gb, in the end required 39gb to compile just the kernel
 
+        Wn the directory of the kenel output, run the following
+        $ sudo dpkg -i linux-*.deb
+        $ sudo update-grub # adds to boot menu
+
+        Reboot and check kernel with
+        # uname -r
+        And kernel successfully installed
+        ... and didnt crash a few hour later either! (that has been my experience in the past)
 
     A.4 - Write a C module that can be inserted as a kernel module that prints "Hello, world" when the module is initialized and installed, and "Goodbye, world" when the module is removed.
         TODO
