@@ -197,8 +197,19 @@ Part A
         Using https://blog.sourcerer.io/writing-a-simple-linux-kernel-module-d9dc3762c234 as a reference
         Using https://tldp.org/LDP/lkmpg/2.6/html/x121.html as a reference
         Create hello_world.c in git
-        
+        Create Makefile (in nano b/c visial studio code butchered up the file somwhere) i hate makefiles
+        $ make
+        make seems to have compiled properly, and created a handfull of files
+        $ sudo insmod ./hello_world.ko
+        $ cat /proc/modules
+        Module seems to be in there at the top!
+        $ cat /var/log/kern.log
+        Jan 28 22:32:17 ubuntu-workstation kernel: [ 6971.178631] Hello, world
+        $ sudo rmmod hello_world
+        $ cat /var/log/kern.log
+        Jan 28 22:45:19 ubuntu-workstation kernel: [ 7752.911387] Goodbye, world
 
+        Done!
 
     A.5 - Write a C program that reads the /proc filesystem to get status information about the machine. Justify what information you are obtaining and why.
         
