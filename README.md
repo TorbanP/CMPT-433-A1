@@ -189,11 +189,17 @@ Part A
 
         Reboot and check kernel with
         # uname -r
-        And kernel successfully installed
+        And kernel successfully installed, both vm's were similar and checked the same way
         ... and didnt crash a few hour later either! (that has been my experience in the past)
 
     A.4 - Write a C module that can be inserted as a kernel module that prints "Hello, world" when the module is initialized and installed, and "Goodbye, world" when the module is removed.
-        TODO
+
+        Using https://blog.sourcerer.io/writing-a-simple-linux-kernel-module-d9dc3762c234 as a reference
+        Using https://tldp.org/LDP/lkmpg/2.6/html/x121.html as a reference
+        Create hello_world.c in git
+        
+
+
     A.5 - Write a C program that reads the /proc filesystem to get status information about the machine. Justify what information you are obtaining and why.
         
         First install gcc compiler
