@@ -159,7 +159,7 @@ Part A
         $ make -j12 deb-pkg # 12 cores of goodness
         Press enter blindly about 500 times
             apparently i didnt save the config file properly which is why it asked so many questions
-        Heat the room for a while compiling while starting workststion kernel build
+        Heat the room for a while compiling while starting workstation kernel build
 
         Workstation Kernel, Same process mostly
         Workstation uses a new kernel due to an update so adapt code slightly
@@ -249,11 +249,15 @@ Part B
         $ sudo apt install php libapache2-mod-php # install apache2 php plugin
         $ sudo systemctl restart apache2 # restart
 
-        Verify it works by creating example php page taht displays phpinfo();
+        Verify it works by creating example php page that displays phpinfo();
         Successfully running PHP Version 7.4.3
 
     B.2 - Write a simple script in PHP that accesses the /proc filesystem on the web server machine and prints out the same information that the C program did in Part A.5. This must be able to be run under Apache
-        TODO
+        
+        Using http://www.sledgehammersolutions.co.uk/projects/php/procfs.html as reference
+
+        I have not touched PHP in 5 years or anything web for that matter
+
     B.3 - Write a simple script in python (or other scripting language) that accesses the /proc filesystem on the web server machine and prints out the same information that the C program did in Part A.5.
         TODO
     B.4 - Show that you can access the script in Part B.2. from a browser on the VM, or from another computer (real or virtual).
